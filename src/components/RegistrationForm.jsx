@@ -33,16 +33,16 @@ const InputField = ({
   ...props
 }) => (
   <div>
-    <label className="block text-sm font-semibold text-gray-700 mb-2">
+    <label className="block text-sm font-semibold text-bossDark mb-2">
       {label} {required && <span className="text-red-500">*</span>}
     </label>
     <input
       {...register(name)}
       type={type}
-      className={`w-full px-4 py-3 border-2 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+      className={`w-full px-4 py-3 border-2 rounded-lg transition-all focus:outline-none focus:border-bossPinkLight ${
         errors[name]
           ? "border-red-300 bg-red-50"
-          : "border-gray-200 focus:border-blue-500"
+          : "border-gray-200 focus:border-bossPinkStrong"
       }`}
       placeholder={placeholder}
       {...props}
@@ -61,16 +61,16 @@ const TextareaField = ({
   required = true,
 }) => (
   <div>
-    <label className="block text-sm font-semibold text-gray-700 mb-2">
+    <label className="block text-sm font-semibold text-bossDark mb-2">
       {label} {required && <span className="text-red-500">*</span>}
     </label>
     <textarea
       {...register(name)}
       rows={rows}
-      className={`w-full px-4 py-3 border-2 rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none ${
+      className={`w-full px-4 py-3 border-2 rounded-lg transition-all focus:outline-none focus:border-bossPinkStrong resize-none ${
         errors[name]
           ? "border-red-300 bg-red-50"
-          : "border-gray-200 focus:border-blue-500"
+          : "border-gray-200 focus:border-bossPinkStrong"
       }`}
       placeholder={placeholder}
     />
@@ -225,14 +225,15 @@ export default function RegistrationForm() {
   /* TODO - Navegar hasta agradecimiento */
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-50 via-indigo-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-linear-to-br from-gray-100 to-gray-50  py-12 px-4 sm:px-6 lg:px-8 text-bossDark">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          <h1 className="text-4xl font-bold text-bossDark uppercase  mb-2">
             Formulario de Registro
           </h1>
-          <p className="text-lg text-gray-600">
-            Completa todos los campos para unirte a nuestra comunidad
+          <p className="text-lg text-bossDark">
+            Completa todos los campos para unirte a nuestra comunidad y aparecer
+            en nuestro Boss Board!
           </p>
         </div>
 
@@ -262,7 +263,7 @@ export default function RegistrationForm() {
           <div className="space-y-6">
             {/* Sección: Información Personal */}
             <div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-4 pb-2 border-b-2 border-blue-500">
+              <h2 className="text-2xl font-bold mb-4 pb-2 border-b-2 border-bossPink">
                 📋 Información Personal
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -300,9 +301,7 @@ export default function RegistrationForm() {
                     max={getMaxBirthday()}
                   />
                   {age !== null && (
-                    <p className="mt-1 text-sm text-gray-600">
-                      Tienes {age} años
-                    </p>
+                    <p className="mt-1 text-sm">Tienes {age} años</p>
                   )}
                 </div>
                 <InputField
@@ -323,8 +322,8 @@ export default function RegistrationForm() {
             </div>
 
             {/* Sección: Foto de Perfil */}
-            <div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-4 pb-2 border-b-2 border-purple-500">
+            <div className="mt-20">
+              <h2 className="text-2xl font-bold mb-4 pb-2 border-b-2 border-bossPink">
                 📷 Foto de Perfil
               </h2>
 
@@ -340,7 +339,7 @@ export default function RegistrationForm() {
                           ? "border-red-300 bg-red-50"
                           : imagePreview
                             ? "border-green-300 bg-green-50"
-                            : "border-gray-300 hover:border-blue-500 hover:bg-blue-50"
+                            : "border-gray-300 hover:border-bossPink hover:bg-bossPinkLight"
                       }`}
                     >
                       <input
@@ -395,8 +394,8 @@ export default function RegistrationForm() {
             </div>
 
             {/* Sección: Redes Sociales */}
-            <div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-4 pb-2 border-b-2 border-pink-500">
+            <div className="mt-20">
+              <h2 className="text-2xl font-bold mb-4 pb-2 border-b-2 border-bossPink">
                 🌐 Redes Sociales
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -438,9 +437,9 @@ export default function RegistrationForm() {
               </div>
             </div>
 
-            {/* Sección: Motivación y Sueños */}
-            <div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-4 pb-2 border-b-2 border-green-500">
+            {/* Sección: Cuentanos sobre ti */}
+            <div className="mt-20">
+              <h2 className="text-2xl font-bold mb-4 pb-2 border-b-2 border-bossPink">
                 💭 Cuéntanos sobre ti
               </h2>
               <div className="space-y-6">
@@ -485,7 +484,7 @@ export default function RegistrationForm() {
                 <span className="text-sm font-semibold text-gray-700">
                   Progreso del formulario
                 </span>
-                <span className="text-sm font-semibold text-blue-600">
+                <span className="text-sm font-semibold text-bossPinkStrong">
                   {Object.keys(dirtyFields).length} / 15 campos completados
                 </span>
               </div>
@@ -503,7 +502,7 @@ export default function RegistrationForm() {
             <button
               onClick={handleSubmit(onSubmit)}
               disabled={isSubmitting || !isValid}
-              className="w-full bg-linear-to-r from-blue-600 to-purple-600 text-white py-4 px-6 rounded-lg font-bold text-lg hover:from-blue-700 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              className="w-full bg-linear-to-r from-blue-600 to-purple-600 text-white py-4 px-6 rounded-lg font-bold text-lg hover:from-bossPinkStrong hover:to-bossPink disabled:from-gray-200 disabled:to-gray-300 disabled:text-gray-400 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
               {isSubmitting ? (
                 <span className="flex items-center justify-center gap-3">
