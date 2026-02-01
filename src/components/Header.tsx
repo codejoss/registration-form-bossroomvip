@@ -1,7 +1,10 @@
+const logoUrl =
+  "https://vzfzqtrfktrvnxdykrbn.supabase.co/storage/v1/object/public/imagesMomboss/assets/The%20boss%20room%20vip%20white-001.png";
+
 function Header() {
   return (
     <div className="bg-bossDark p-8 text-white font-bold flex justify-center">
-      <h1>Header</h1>
+      <img className="inline h-16" src={logoUrl} alt="logo for The BossBoard" />
     </div>
   );
 }
