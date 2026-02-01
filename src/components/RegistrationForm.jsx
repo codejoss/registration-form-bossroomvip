@@ -377,7 +377,7 @@ export default function RegistrationForm() {
                         <img
                           src={imagePreview}
                           alt="Vista previa"
-                          className="w-32 h-32 object-cover rounded-lg border-2 border-gray-300 shadow-md"
+                          className="w-40 h-40 object-cover rounded-full border-2 border-gray-300 shadow-md"
                         />
                       </div>
                     )}
