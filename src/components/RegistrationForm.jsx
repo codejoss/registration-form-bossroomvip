@@ -10,6 +10,8 @@ import {
   calculateAge,
 } from "../utils/dateHelpers.js";
 
+const DBNAME = "members";
+
 const ErrorMessage = ({ error }) => {
   if (!error) return null;
   return (
@@ -157,7 +159,7 @@ export default function RegistrationForm() {
   };
 
   const insertUser = async (userData) => {
-    const { data, error } = await supabase.from("members").insert([userData]);
+    const { data, error } = await supabase.from(DBNAME).insert([userData]);
     return { data, error };
   };
 
@@ -216,8 +218,11 @@ export default function RegistrationForm() {
         type: "error",
         message: error.message,
       });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
+
+  /* TODO - Navegar hasta agradecimiento */
 
   return (
     <div className="min-h-screen bg-linear-to-br from-blue-50 via-indigo-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">

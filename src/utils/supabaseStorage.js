@@ -1,7 +1,7 @@
 import supabase from "../services/supabase";
 
 // Nombre del bucket en Supabase Storage
-const BUCKET_NAME = "profile-pictures"; // Cambia esto según tu bucket
+const BUCKET_NAME = "imagesMomboss";
 
 /**
  * Sube una imagen a Supabase Storage
@@ -15,7 +15,7 @@ export const uploadProfilePicture = async (file, userId) => {
     const timestamp = Date.now();
     const fileExt = file.name.split(".").pop();
     const fileName = `${userId}-${timestamp}.${fileExt}`;
-    const filePath = `profiles/${fileName}`;
+    const filePath = `profileImages/${fileName}`;
 
     // Subir archivo a Supabase Storage
     const { data, error } = await supabase.storage
