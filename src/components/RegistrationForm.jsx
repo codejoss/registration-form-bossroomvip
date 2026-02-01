@@ -507,6 +507,7 @@ export default function RegistrationForm() {
                     width: `${(Object.keys(dirtyFields).length / 10) * 100}%`,
                   }}
                 />
+                ˝˝
               </div>
             </div>
 
