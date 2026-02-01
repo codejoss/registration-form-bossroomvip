@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
@@ -79,6 +80,8 @@ const TextareaField = ({
 );
 
 export default function RegistrationForm() {
+  const navigate = useNavigate();
+
   const [submitStatus, setSubmitStatus] = useState({ type: "", message: "" });
   const [imagePreview, setImagePreview] = useState(null);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -115,6 +118,13 @@ export default function RegistrationForm() {
 
   const birthdayValue = watch("birthday");
   const age = birthdayValue ? calculateAge(birthdayValue) : null;
+
+  // Redireccionamiento automatico
+  const navegateToGratefulnessPage = () => {
+    setTimeout(() => {
+      navigate("/gratefulness", { replace: true });
+    }, 3000);
+  };
 
   // Manejar cambio de archivo
   const handleFileChange = (e) => {
@@ -220,9 +230,10 @@ export default function RegistrationForm() {
       });
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
+    /* TODO - Navegar hasta agradecimiento */
+    // Redirigir después de 3 segundos
+    navegateToGratefulnessPage();
   };
-
-  /* TODO - Navegar hasta agradecimiento */
 
   return (
     <div className="min-h-screen bg-linear-to-br from-gray-100 to-gray-50  py-12 px-4 sm:px-6 lg:px-8 text-bossDark">
@@ -485,14 +496,15 @@ export default function RegistrationForm() {
                   Progreso del formulario
                 </span>
                 <span className="text-sm font-semibold text-bossPinkStrong">
-                  {Object.keys(dirtyFields).length} / 15 campos completados
+                  {Object.keys(dirtyFields).length} / 10 campos obligatorios
+                  completados
                 </span>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">
                 <div
                   className="bg-linear-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-300"
                   style={{
-                    width: `${(Object.keys(dirtyFields).length / 15) * 100}%`,
+                    width: `${(Object.keys(dirtyFields).length / 10) * 100}%`,
                   }}
                 />
               </div>
@@ -502,7 +514,7 @@ export default function RegistrationForm() {
             <button
               onClick={handleSubmit(onSubmit)}
               disabled={isSubmitting || !isValid}
-              className="w-full bg-linear-to-r from-blue-600 to-purple-600 text-white py-4 px-6 rounded-lg font-bold text-lg hover:from-bossPinkStrong hover:to-bossPink disabled:from-gray-200 disabled:to-gray-300 disabled:text-gray-400 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              className="w-full bg-linear-to-r from-bossPinkStrong to-bossPink text-white py-4 px-6 rounded-lg font-bold text-l disabled:from-gray-200 disabled:to-gray-300 disabled:text-gray-400 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:cursor-pointer"
             >
               {isSubmitting ? (
                 <span className="flex items-center justify-center gap-3">
