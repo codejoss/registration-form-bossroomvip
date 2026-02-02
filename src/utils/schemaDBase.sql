@@ -1,0 +1,23 @@
+create table public.members (
+  id uuid not null default gen_random_uuid (),
+  name text not null,
+  email text not null,
+  whatsapp text not null,
+  birthday date not null,
+  city text null,
+  carrer text not null,
+  dream text not null,
+  affiliate_name text not null,
+  motivation text not null,
+  instagram_url text not null,
+  tiktok_url text null,
+  youtube_url text null,
+  website_url text null,
+  message text not null,
+  picture_url text not null,
+  autorizated boolean not null default false,
+  created_at timestamp with time zone not null default (now() AT TIME ZONE 'utc'::text),
+  updated timestamp with time zone not null default (now() AT TIME ZONE 'utc'::text),
+  constraint members_pkey primary key (id),
+  constraint members_email_key unique (email)
+) TABLESPACE pg_default;

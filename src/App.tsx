@@ -1,8 +1,8 @@
-import Welcome from "./pages/Welcome";
+import WelcomePage from "./pages/WelcomePage";
 function App() {
   return (
     <div>
-      <Welcome />
+      <WelcomePage />
     </div>
   );
 }
