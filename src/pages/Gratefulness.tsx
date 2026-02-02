@@ -3,11 +3,11 @@ import MainLayout from "../layouts/MainLayout";
 function Gratefulness() {
   return (
     <MainLayout>
-      <main className="text-center p-0 m-0 min-h-screen flex flex-col justify-around items-center">
-        <div className="flex flex-col justify-center items-center gap-10 text-bossDark max-w-xl">
-          <div className="max-w-xl text-4xl font-bold xl:text-5xl gap-2 flex flex-col justify-center items-center">
-            <h1>✨ ¡Registro Exitoso! ✨</h1>
-            <h2>🎉</h2>
+      <main className="text-center self-center my-10">
+        <div className="flex flex-col justify-around items-center gap-10 text-bossDark max-w-xl px-10">
+          <div className="max-w-xl text-3xl font-bold xl:text-5xl gap-2 flex flex-col justify-evenly items-center">
+            <h1>¡Registro Exitoso!</h1>
+            <h2>✨🎉</h2>
           </div>
           <p className="text-xl font-bold">Felicidades por dar este paso.</p>
           <p>
@@ -19,7 +19,7 @@ function Gratefulness() {
           </p>
 
           {/* Extra Info */}
-          <article className="py-5 px-20 border-4 border-bossPink rounded-2xl flex flex-col gap-3">
+          <article className=" py-5 px-5 border-4 border-bossPink rounded-2xl flex flex-col gap-3">
             <h2 className="text-xl font-bold text-bossPinkStrong">
               ✨ Bienvenida a tu nueva Sala de Poder Digital. ✨
             </h2>
