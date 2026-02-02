@@ -122,7 +122,9 @@ export default function RegistrationForm() {
   // Redireccionamiento automatico
   const navegateToGratefulnessPage = () => {
     setTimeout(() => {
-      navigate("/gratefulness", { replace: true });
+      navigate("/registration-form-bossroomvip/gratefulness", {
+        replace: true,
+      });
     }, 3000);
   };
 
