@@ -12,10 +12,21 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
+        <Route path="" element={<App />} />
         <Route path="/" element={<App />} />
-        <Route path="/welcome" element={<Welcome />} />
-        <Route path="/registerform" element={<FormPage />} />
-        <Route path="/gratefulness" element={<Gratefulness />} />
+        <Route path="/registration-form-bossroomvip/" element={<App />} />
+        <Route
+          path="/registration-form-bossroomvip/welcome"
+          element={<Welcome />}
+        />
+        <Route
+          path="/registration-form-bossroomvip/registerform"
+          element={<FormPage />}
+        />
+        <Route
+          path="/registration-form-bossroomvip/gratefulness"
+          element={<Gratefulness />}
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -1,11 +1,23 @@
+import { useNavigate } from "react-router";
 import MainLayout from "../layouts/MainLayout";
 
 function NotFound() {
+  const navigate = useNavigate();
+
+  // Redirect to home after 3 seconds
+  setTimeout(() => {
+    navigate("/registration-form-bossroomvip/");
+  }, 3000);
+
   return (
     <MainLayout>
-      <div>
-        <h1>Error 404</h1>
-        <h2>Página no encontrada</h2>
+      <div className="flex flex-col justify-center items-center text-bossDark text-center">
+        <h1 className="text-6xl font-bold text-bossPinkStrong">Error 404</h1>
+        <h2 className="text-2xl font-bold">Página no encontrada</h2>
+        <p className="mt-10 animate-bounce ">
+          Redirigiendo a la página de inicio...
+        </p>
+        {}
       </div>
     </MainLayout>
   );
