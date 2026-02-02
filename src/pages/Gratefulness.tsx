@@ -45,7 +45,7 @@ function Gratefulness() {
               href="https://codejoss.github.io/librarythebossroomvip"
               target="_blank"
               rel="noopener noreferrer"
-              className="max-w-72 self-center mt-3 inline-block bg-bossPinkStrong text-white font-bold py-3 px-6 rounded-2xl hover:bg-white hover:border-2 border-bossPinkStrong hover:text-bossPinkStrong transition hover:scale-110"
+              className="max-w-72 self-center mt-3 inline-block bg-bossPinkStrong border-bossPinkStrong border-2 text-white font-bold py-3 px-6 rounded-2xl hover:bg-white  hover:text-bossPinkStrong transition hover:scale-105"
             >
               Ir a la Biblioteca Boss
             </a>

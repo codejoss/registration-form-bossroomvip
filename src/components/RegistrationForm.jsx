@@ -495,18 +495,17 @@ export default function RegistrationForm() {
             <div className="bg-gray-50 p-4 rounded-lg">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-semibold text-gray-700">
-                  Progreso del formulario
+                  Progreso del formulario (10 obligatorios)
                 </span>
                 <span className="text-sm font-semibold text-bossPinkStrong">
-                  {Object.keys(dirtyFields).length} / 10 campos obligatorios
-                  completados
+                  {Object.keys(dirtyFields).length} / 14 campos completados
                 </span>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">
                 <div
-                  className="bg-linear-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-300"
+                  className="bg-linear-to-r from-bossPinkStrong to-bossPink h-2 rounded-full transition-all duration-300"
                   style={{
-                    width: `${(Object.keys(dirtyFields).length / 10) * 100}%`,
+                    width: `${(Object.keys(dirtyFields).length / 14) * 100}%`,
                   }}
                 />
                 ˝˝
