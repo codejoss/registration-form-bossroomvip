@@ -1,8 +1,60 @@
 function Footer() {
+  const socialMediaInfo = [
+    {
+      name: "The BossBoard",
+      url: "https://codejoss.github.io/thebossboard/",
+    },
+    {
+      name: "Instagram",
+      url: "https://www.instagram.com/_andreacazarin",
+    },
+  ];
+
   return (
-    <div className="bg-bossDark text-white font-bold p-8 flex justify-center">
-      <h1>Footer</h1>
-    </div>
+    <footer className="bg-bossDark shadow-sm dark:bg-bossDark">
+      <div className="mx-auto w-full max-w-7xl p-4 md:py-4">
+        <div className="justify-between sm:flex sm:items-center sm:justify-between">
+          <a
+            href="https://www.andreacazarin.com/thebossroomvip"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mb-2 flex items-center sm:mb-0"
+          >
+            <div className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+              TheBossRoomVIP
+            </div>
+          </a>
+
+          <ul className="mb-6 flex flex-wrap items-center text-sm font-medium text-gray-200 sm:mb-0 dark:text-gray-100">
+            {/* URLs build */}
+            {socialMediaInfo.map((element) => {
+              return (
+                <li>
+                  <a
+                    href={element.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="me-4 hover:underline md:me-6"
+                  >
+                    {element.name}
+                  </a>
+                </li>
+              );
+            })}
+            {/* End URLs build */}
+          </ul>
+        </div>
+        <hr className="my-3 border-gray-100 sm:mx-auto lg:my-3 dark:border-gray-200" />
+        <a
+          href="https://github.com/codejoss"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm flex justify-center font-bold text-white sm:text-center dark:text-white"
+        >
+          Coding with love 🤍
+        </a>
+      </div>
+    </footer>
   );
 }
 

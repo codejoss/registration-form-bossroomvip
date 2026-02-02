@@ -318,16 +318,16 @@ export default function RegistrationForm() {
                 <InputField
                   register={register}
                   errors={errors}
-                  label="Ciudad de residencia"
+                  label="Ciudad y/o País de residencia"
                   name="city"
                   placeholder="Ej: Leon, Guanajuato"
                 />
                 <InputField
                   register={register}
                   errors={errors}
-                  label="Carrera/Profesión"
+                  label="¿A qué te dedicas actualmente?"
                   name="carrer"
-                  placeholder="Ej: Ingeniería en Sistemas"
+                  placeholder="Puedes incluir tu profesión, emprendimiento o rol actual"
                 />
               </div>
             </div>
@@ -457,33 +457,33 @@ export default function RegistrationForm() {
                 <TextareaField
                   register={register}
                   errors={errors}
-                  label="¿Cuál es tu sueño o meta?"
+                  label="¿Cuál es tu propósito o sueño con tu proyecto/emprendimiento?"
                   name="dream"
-                  placeholder="Describe tu sueño o meta principal..."
+                  placeholder="Un espacio para que compartas lo que te mueve..."
                   rows={3}
                 />
                 <TextareaField
                   register={register}
                   errors={errors}
-                  label="¿Qué te motiva?"
+                  label="¿Qué te motivó a unirte a The Boss Room VIP?"
                   name="motivation"
-                  placeholder="Cuéntanos qué te impulsa cada día..."
+                  placeholder="Breve reflexión que conecte contigo y con otras..."
                   rows={4}
                 />
                 <InputField
                   register={register}
                   errors={errors}
-                  label="Nombre de quien te refirió (afiliado)"
+                  label="¿Alguien te invito a unirte a la comunidad o te refirió?"
                   name="affiliate_name"
-                  placeholder="Ej: María González"
+                  placeholder="Coloca su nombre y apellido o usuario en redes si lo sabes..."
                   required={false}
                 />
                 <TextareaField
                   register={register}
                   errors={errors}
-                  label="Mensaje adicional"
+                  label="Deja un mensaje o consejo para otra Boss que este comenzando"
                   name="message"
-                  placeholder="Escribe cualquier comentario o pregunta que tengas..."
+                  placeholder="Tu voz puede inspirar a muchas 💜..."
                   rows={4}
                 />
               </div>

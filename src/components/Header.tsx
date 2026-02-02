@@ -3,8 +3,12 @@ const logoUrl =
 
 function Header() {
   return (
-    <div className="bg-bossDark p-8 text-white font-bold flex justify-center">
-      <img className="inline h-16" src={logoUrl} alt="logo for The BossBoard" />
+    <div className="bg-bossDark p-6 text-white font-bold flex justify-center">
+      <img
+        className="inline h-20 py-0"
+        src={logoUrl}
+        alt="logo for The BossBoard"
+      />
     </div>
   );
 }

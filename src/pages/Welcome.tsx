@@ -4,9 +4,10 @@ function Welcome() {
   return (
     <MainLayout>
       <main className="">
-        <div className="flex flex-col justify-center items-center gap-5 text-center text-bossDark">
+        <div className="flex flex-col justify-center items-center gap-5 text-center text-bossDark my-10">
+          {/* Title */}
           <div className="text-4xl text-center font-bold xl:text-5xl">
-            <h1>✨ ¡Preséntate ✨</h1>
+            <h1 className="text-bossPinkStrong">✨ ¡Preséntate ✨</h1>
             <h2>a la comunidad!</h2>
           </div>
           <div className="max-w-xl my-10">
@@ -19,7 +20,7 @@ function Welcome() {
               emprendiendo con propósito.
             </p>
           </div>
-          <div className="bg-bossDark w-40 text-center text-white font-bold h-10 flex items-center justify-center rounded-lg">
+          <div className="hover:bg-bossDark w-40 text-center text-white font-bold h-10 flex items-center justify-center rounded-lg bg-bossPinkStrong cursor-pointer hover:scale-110 transition-all duration-300">
             <a href="/registerform">Iniciar Registro</a>
           </div>
         </div>
