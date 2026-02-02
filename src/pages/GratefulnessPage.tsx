@@ -1,6 +1,6 @@
 import MainLayout from "../layouts/MainLayout";
 
-function Gratefulness() {
+function GratefulnessPage() {
   return (
     <MainLayout>
       <main className="text-center self-center my-10">
@@ -56,4 +56,4 @@ function Gratefulness() {
   );
 }
 
-export default Gratefulness;
+export default GratefulnessPage;

@@ -3,11 +3,10 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router";
 import App from "./App.tsx";
-import Welcome from "./pages/Welcome.tsx";
+import WelcomePage from "./pages/WelcomePage.tsx";
 import FormPage from "./pages/FormPage.tsx";
-import NotFound from "./pages/NotFound.tsx";
-import Gratefulness from "./pages/Gratefulness.tsx";
-import Test from "./pages/Test.tsx";
+import NotFoundPage from "./pages/NotFoundPage.tsx";
+import GratefulnessPage from "./pages/GratefulnessPage.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -15,11 +14,10 @@ createRoot(document.getElementById("root")!).render(
       <Routes>
         <Route path="" element={<App />} />
         <Route path="/" element={<App />} />
-        <Route path="/welcome" element={<Welcome />} />
+        <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/registerform" element={<FormPage />} />
-        <Route path="/gratefulness" element={<Gratefulness />} />
-        <Route path="/test" element={<Test />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/gratefulness" element={<GratefulnessPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

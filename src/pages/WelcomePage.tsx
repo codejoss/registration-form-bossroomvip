@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import MainLayout from "../layouts/MainLayout";
 
-function Welcome() {
+function WelcomePage() {
   return (
     <MainLayout>
       <main className="">
@@ -30,4 +30,4 @@ function Welcome() {
   );
 }
 
-export default Welcome;
+export default WelcomePage;

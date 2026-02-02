@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import MainLayout from "../layouts/MainLayout";
 
-function NotFound() {
+function NotFoundPage() {
   const navigate = useNavigate();
 
   // Redirect to home after 3 seconds
@@ -23,4 +23,4 @@ function NotFound() {
   );
 }
 
-export default NotFound;
+export default NotFoundPage;
