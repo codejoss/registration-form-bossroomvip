@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import MainLayout from "../layouts/MainLayout";
 
 function Welcome() {
@@ -21,9 +22,7 @@ function Welcome() {
             </p>
           </div>
           <div className="hover:bg-bossDark w-40 text-center text-white font-bold h-10 flex items-center justify-center rounded-lg bg-bossPinkStrong cursor-pointer hover:scale-110 transition-all duration-300">
-            <a href="/registration-form-bossroomvip/registerform">
-              Iniciar Registro
-            </a>
+            <Link to="/registerform">Iniciar Registro</Link>
           </div>
         </div>
       </main>

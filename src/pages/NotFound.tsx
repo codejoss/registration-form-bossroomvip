@@ -6,7 +6,7 @@ function NotFound() {
 
   // Redirect to home after 3 seconds
   setTimeout(() => {
-    navigate("/registration-form-bossroomvip/");
+    navigate("/welcome", { replace: true });
   }, 3000);
 
   return (
