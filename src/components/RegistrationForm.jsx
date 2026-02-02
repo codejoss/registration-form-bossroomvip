@@ -11,8 +11,6 @@ import {
   calculateAge,
 } from "../utils/dateHelpers.js";
 
-const DBNAME = "members";
-
 const ErrorMessage = ({ error }) => {
   if (!error) return null;
   return (
@@ -171,7 +169,27 @@ export default function RegistrationForm() {
   };
 
   const insertUser = async (userData) => {
-    const { data, error } = await supabase.from(DBNAME).insert([userData]);
+    const { data, error } = await supabase.rpc(
+      "insert_member_with_private_data",
+      {
+        p_name: userData.name,
+        p_email: userData.email,
+        p_whatsapp: userData.whatsapp,
+        p_birthday: userData.birthday,
+        p_city: userData.city,
+        p_carrer: userData.carrer,
+        p_dream: userData.dream,
+        p_affiliate_name: userData.affiliate_name || "",
+        p_motivation: userData.motivation,
+        p_instagram_url: userData.instagram_url,
+        p_tiktok_url: userData.tiktok_url || "",
+        p_youtube_url: userData.youtube_url || "",
+        p_website_url: userData.website_url || "",
+        p_message: userData.message,
+        p_picture_url: userData.picture_url,
+      },
+    );
+
     return { data, error };
   };
 

@@ -7,6 +7,7 @@ import Welcome from "./pages/Welcome.tsx";
 import FormPage from "./pages/FormPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import Gratefulness from "./pages/Gratefulness.tsx";
+import Test from "./pages/Test.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -17,6 +18,7 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/registerform" element={<FormPage />} />
         <Route path="/gratefulness" element={<Gratefulness />} />
+        <Route path="/test" element={<Test />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
