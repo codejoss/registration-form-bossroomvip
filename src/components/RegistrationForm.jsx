@@ -332,7 +332,7 @@ export default function RegistrationForm() {
                 <InputField
                   register={register}
                   errors={errors}
-                  label="¿Como te gustaría que te llamáramos? (Nickname)"
+                  label="¿Como te gustaría que te llamáramos?"
                   name="nickname"
                   placeholder="Ej: Juancito"
                 />
