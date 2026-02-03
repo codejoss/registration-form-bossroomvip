@@ -432,7 +432,7 @@ export default function RegistrationForm() {
                             : "Haz clic para seleccionar"}
                         </p>
                         <p className="text-xs text-gray-500">
-                          JPG, PNG o WEBP (máx. 5MB)
+                          JPG, PNG o WEBP (máx. 30MB)
                         </p>
                       </div>
                     </label>
