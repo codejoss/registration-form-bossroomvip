@@ -96,8 +96,8 @@ export default function RegistrationForm() {
     mode: "onBlur",
     defaultValues: {
       name: "",
-      first_name: "",
-      last_name: "",
+      father_last_name: "",
+      mother_last_name: "",
       nickname: "",
       email: "",
       whatsapp: "+52",
@@ -178,8 +178,8 @@ export default function RegistrationForm() {
       "insert_member_with_private_data",
       {
         p_name: userData.name,
-        p_first_name: userData.first_name,
-        p_last_name: userData.last_name,
+        p_father_last_name: userData.father_last_name,
+        p_mother_last_name: userData.mother_last_name,
         p_nickname: userData.nickname,
         p_email: userData.email,
         p_whatsapp: userData.whatsapp,
@@ -319,14 +319,14 @@ export default function RegistrationForm() {
                   register={register}
                   errors={errors}
                   label="Apellido Paterno"
-                  name="first_name"
+                  name="father_last_name"
                   placeholder="Ej: Pérez"
                 />
                 <InputField
                   register={register}
                   errors={errors}
                   label="Apellido Materno"
-                  name="last_name"
+                  name="mother_last_name"
                   placeholder="Ej: García"
                 />
                 <InputField
