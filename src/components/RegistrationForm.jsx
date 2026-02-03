@@ -96,10 +96,15 @@ export default function RegistrationForm() {
     mode: "onBlur",
     defaultValues: {
       name: "",
+      first_name: "",
+      last_name: "",
+      nickname: "",
       email: "",
-      whatsapp: "",
+      whatsapp: "+52",
       birthday: "",
       city: "",
+      state: "",
+      country: "México",
       carrer: "",
       dream: "",
       affiliate_name: "",
@@ -173,10 +178,15 @@ export default function RegistrationForm() {
       "insert_member_with_private_data",
       {
         p_name: userData.name,
+        p_first_name: userData.first_name,
+        p_last_name: userData.last_name,
+        p_nickname: userData.nickname,
         p_email: userData.email,
         p_whatsapp: userData.whatsapp,
         p_birthday: userData.birthday,
         p_city: userData.city,
+        p_state: userData.state,
+        p_country: userData.country,
         p_carrer: userData.carrer,
         p_dream: userData.dream,
         p_affiliate_name: userData.affiliate_name || "",
@@ -241,6 +251,7 @@ export default function RegistrationForm() {
 
       // Scroll al inicio
       window.scrollTo({ top: 0, behavior: "smooth" });
+      navegateToGratefulnessPage();
     } catch (error) {
       console.error("Error completo:", error);
       setUploadProgress(0);
@@ -252,7 +263,6 @@ export default function RegistrationForm() {
     }
     /* TODO - Navegar hasta agradecimiento */
     // Redirigir después de 3 segundos
-    navegateToGratefulnessPage();
   };
 
   return (
@@ -303,7 +313,28 @@ export default function RegistrationForm() {
                   errors={errors}
                   label="Nombre completo"
                   name="name"
-                  placeholder="Ej: Juan Pérez García"
+                  placeholder="Ej: Juan"
+                />
+                <InputField
+                  register={register}
+                  errors={errors}
+                  label="Apellido Paterno"
+                  name="first_name"
+                  placeholder="Ej: Pérez"
+                />
+                <InputField
+                  register={register}
+                  errors={errors}
+                  label="Apellido Materno"
+                  name="last_name"
+                  placeholder="Ej: García"
+                />
+                <InputField
+                  register={register}
+                  errors={errors}
+                  label="¿Como te gustaría que te llamáramos? (Nickname)"
+                  name="nickname"
+                  placeholder="Ej: Juancito"
                 />
                 <InputField
                   register={register}
@@ -338,9 +369,23 @@ export default function RegistrationForm() {
                 <InputField
                   register={register}
                   errors={errors}
-                  label="Ciudad y/o País de residencia"
+                  label="Ciudad"
                   name="city"
-                  placeholder="Ej: Leon, Guanajuato"
+                  placeholder="Ej: Leon"
+                />
+                <InputField
+                  register={register}
+                  errors={errors}
+                  label="Estado"
+                  name="state"
+                  placeholder="Ej: Guanajuato"
+                />
+                <InputField
+                  register={register}
+                  errors={errors}
+                  label="País"
+                  name="country"
+                  placeholder="Ej: México"
                 />
                 <InputField
                   register={register}
@@ -526,7 +571,6 @@ export default function RegistrationForm() {
                     width: `${(Object.keys(dirtyFields).length / 14) * 100}%`,
                   }}
                 />
-                ˝˝
               </div>
             </div>
 

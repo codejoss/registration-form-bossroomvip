@@ -18,17 +18,17 @@ function Footer() {
     <footer className="bg-bossDark shadow-sm dark:bg-bossDark">
       <div className="mx-auto w-full max-w-7xl p-4 md:py-4">
         <div className="justify-between sm:flex sm:items-center sm:justify-between">
-          <p className="mb-2 flex items-center sm:mb-0">
+          <div className="mb-2 flex items-center sm:mb-0">
             <div className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
               TheBossRoomVIP
             </div>
-          </p>
+          </div>
 
           <ul className="mb-6 flex flex-wrap items-center text-sm font-medium text-gray-200 sm:mb-0 dark:text-gray-100">
             {/* URLs build */}
-            {socialMediaInfo.map((element) => {
+            {socialMediaInfo.map((element, index) => {
               return (
-                <li>
+                <li key={index}>
                   <a
                     href={element.url}
                     target="_blank"
