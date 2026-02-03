@@ -498,7 +498,7 @@ export default function RegistrationForm() {
                   label="YouTube"
                   name="youtube_url"
                   type="url"
-                  placeholder="https://youtube.com/@tucanal"
+                  placeholder="https://youtube.com/tucanal"
                   required={false}
                 />
                 <InputField
