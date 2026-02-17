@@ -50,6 +50,39 @@ const InputField = ({
   </div>
 );
 
+const InputSocialNetwork = ({
+  register,
+  errors,
+  label,
+  name,
+  socialNetwork,
+  type = "text",
+  placeholder,
+  required = true,
+  ...props
+}) => (
+  <div>
+    <label className="block text-sm font-semibold text-bossDark mb-2 bg-bossPinkLight pl-4 py-2 rounded-lg">
+      {label} {required && <span className="text-red-500">*</span>}
+    </label>
+    <div className="flex items-center gap-2 w-full">
+      <label className="italic text-bossDark/70">www.{socialNetwork}.com/@</label>
+      <input
+        {...register(name)}
+        type={type}
+        className={`w-full px-4 py-3 border-2 rounded-lg transition-all focus:outline-none focus:border-bossPinkLight ${
+          errors[name]
+            ? "border-red-300 bg-red-50"
+            : "border-gray-200 focus:border-bossPinkStrong"
+        }`}
+        placeholder={placeholder}
+        {...props}
+      />
+    </div>
+    <ErrorMessage error={errors[name]} />
+  </div>
+);
+
 const TextareaField = ({
   register,
   errors,
@@ -109,7 +142,7 @@ export default function RegistrationForm() {
       dream: "",
       affiliate_name: "",
       motivation: "",
-      instagram_url: "https://www.instagram.com/",
+      instagram_url: "",
       tiktok_url: "",
       youtube_url: "",
       website_url: "",
@@ -475,31 +508,34 @@ export default function RegistrationForm() {
                 🌐 Redes Sociales
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <InputField
+                <InputSocialNetwork
                   register={register}
                   errors={errors}
                   label="Instagram"
                   name="instagram_url"
                   type="url"
-                  placeholder="https://www.instagram.com/tuusuario"
+                  placeholder="tu usuario"
+                  socialNetwork="instagram"
                 />
-                <InputField
+                <InputSocialNetwork
                   register={register}
                   errors={errors}
                   label="TikTok"
                   name="tiktok_url"
                   type="url"
-                  placeholder="https://tiktok.com/@tuusuario"
+                  placeholder="tu usuario"
                   required={false}
+                  socialNetwork="tiktok"
                 />
-                <InputField
+                <InputSocialNetwork
                   register={register}
                   errors={errors}
                   label="YouTube"
                   name="youtube_url"
                   type="url"
-                  placeholder="https://youtube.com/tucanal"
+                  placeholder="tu canal"
                   required={false}
+                  socialNetwork="youtube"
                 />
                 <InputField
                   register={register}
@@ -507,9 +543,9 @@ export default function RegistrationForm() {
                   label="Sitio Web"
                   name="website_url"
                   type="url"
-                  placeholder="https://tusitio.com"
+                  placeholder="www.tusitio.com"
                   required={false}
-                />
+                  />
               </div>
             </div>
 

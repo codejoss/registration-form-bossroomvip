@@ -2,13 +2,13 @@ import { z } from "zod";
 
 // Expresiones regulares para validaciones
 const URL_REGEX =
-  /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/;
+  /^[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/;
 const INSTAGRAM_REGEX =
-  /^https?:\/\/(www\.)?instagram\.com\/[a-zA-Z0-9._]+\/?$/;
+  /^[a-zA-Z0-9._]+\/?$/;
 const TIKTOK_REGEX =
-  /^https?:\/\/(www\.)?(tiktok\.com\/@[a-zA-Z0-9._]+|vm\.tiktok\.com\/[a-zA-Z0-9]+)\/?$/;
+  /^[a-zA-Z0-9._]+$/;
 const YOUTUBE_REGEX =
-  /^https?:\/\/(www\.)?(youtube\.com\/(c\/|channel\/|user\/|@)?[a-zA-Z0-9_-]+|youtu\.be\/[a-zA-Z0-9_-]+)\/?$/;
+  /^[a-zA-Z0-9]([a-zA-Z0-9._\u00B7-]*[a-zA-Z0-9])?$/;
 const WHATSAPP_REGEX = /^\+?[1-9]\d{1,14}$/; // Formato internacional E.164
 
 export const registrationSchema = z.object({
@@ -146,10 +146,10 @@ export const registrationSchema = z.object({
   // Instagram (obligatorio)
   instagram_url: z
     .string()
-    .min(1, "La URL de Instagram es obligatoria")
+    .min(1, "Este campo es obligatorio")
     .regex(
       INSTAGRAM_REGEX,
-      "URL de Instagram inválida. Ejemplo: https://www.instagram.com/usuario",
+      "Formato inválido. Colocar solo el nombre de usuario",
     )
     .transform((val) => val.trim()),
 
@@ -160,7 +160,7 @@ export const registrationSchema = z.object({
     .refine((val) => {
       if (!val || val.trim() === "") return true;
       return TIKTOK_REGEX.test(val);
-    }, "URL de TikTok inválida. Ejemplo: https://tiktok.com/@usuario")
+    }, "Formato inválido. Colocar solo el nombre de usuario")
     .transform((val) => (val ? val.trim() : "")),
 
   // YouTube (opcional)
@@ -170,7 +170,7 @@ export const registrationSchema = z.object({
     .refine((val) => {
       if (!val || val.trim() === "") return true;
       return YOUTUBE_REGEX.test(val);
-    }, "URL de YouTube inválida. Ejemplo: https://youtube.com/@usuario")
+    }, "Formato inválido. Colocar solo el nombre de usuario")
     .transform((val) => (val ? val.trim() : "")),
 
   // Website (opcional)
