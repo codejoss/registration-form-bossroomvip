@@ -3,19 +3,16 @@ import { z } from "zod";
 // Expresiones regulares para validaciones
 const URL_REGEX =
   /^[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/;
-const INSTAGRAM_REGEX =
-  /^[a-zA-Z0-9._]+\/?$/;
-const TIKTOK_REGEX =
-  /^[a-zA-Z0-9._]+$/;
-const YOUTUBE_REGEX =
-  /^[a-zA-Z0-9]([a-zA-Z0-9._\u00B7-]*[a-zA-Z0-9])?$/;
+const INSTAGRAM_REGEX = /^[a-zA-Z0-9._]+\/?$/;
+const TIKTOK_REGEX = /^[a-zA-Z0-9._]+$/;
+const YOUTUBE_REGEX = /^[a-zA-Z0-9]([a-zA-Z0-9._\u00B7-]*[a-zA-Z0-9])?$/;
 const WHATSAPP_REGEX = /^\+?[1-9]\d{1,14}$/; // Formato internacional E.164
 
 export const registrationSchema = z.object({
-  // Nombre completo
+  // Nombre
   name: z
     .string()
-    .min(3, "El nombre debe tener al menos 3 caracteres")
+    .min(1, "El nombre debe tener al menos 1 caracteres")
     .max(100, "El nombre no puede exceder 100 caracteres")
     .regex(
       /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
@@ -26,17 +23,7 @@ export const registrationSchema = z.object({
   // Apellido Paterno
   father_last_name: z
     .string()
-    .min(3, "El apellido debe tener al menos 3 caracteres")
-    .max(100, "El apellido no puede exceder 100 caracteres")
-    .regex(
-      /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
-      "El apellido solo puede contener letras y espacios",
-    )
-    .transform((val) => val.trim()),
-  // Apellido Materno
-  mother_last_name: z
-    .string()
-    .min(3, "El apellido debe tener al menos 3 caracteres")
+    .min(1, "El apellido debe tener al menos 1 caracteres")
     .max(100, "El apellido no puede exceder 100 caracteres")
     .regex(
       /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
@@ -44,10 +31,19 @@ export const registrationSchema = z.object({
     )
     .optional()
     .transform((val) => val.trim()),
+  // Apellido Materno
+  mother_last_name: z
+    .string()
+    /* .regex(
+      /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
+      "El apellido solo puede contener letras y espacios",
+    ) */
+    .optional()
+    .transform((val) => val.trim()),
   // Nickname
   nickname: z
     .string()
-    .min(3, "El nombre debe tener al menos 3 caracteres")
+    .min(1, "El nombre debe tener al menos 1 caracteres")
     .max(100, "El nombre no puede exceder 100 caracteres")
     .regex(
       /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,

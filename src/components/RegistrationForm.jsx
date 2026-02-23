@@ -62,11 +62,13 @@ const InputSocialNetwork = ({
   ...props
 }) => (
   <div>
-    <label className="block text-sm font-semibold text-bossDark mb-2 bg-bossPinkLight pl-4 py-2 rounded-lg">
+    <label className="block text-sm font-semibold text-bossDark mb-2 bg-bossGrayLight pl-4 py-2 rounded-lg">
       {label} {required && <span className="text-red-500">*</span>}
     </label>
     <div className="flex items-center gap-2 w-full">
-      <label className="italic text-bossDark/70">www.{socialNetwork}.com/@</label>
+      <label className="italic text-bossDark/70">
+        www.{socialNetwork}.com/@
+      </label>
       <input
         {...register(name)}
         type={type}
@@ -212,7 +214,7 @@ export default function RegistrationForm() {
       {
         p_name: userData.name,
         p_father_last_name: userData.father_last_name,
-        p_mother_last_name: userData.mother_last_name,
+        p_mother_last_name: userData.mother_last_name || "",
         p_nickname: userData.nickname,
         p_email: userData.email,
         p_whatsapp: userData.whatsapp,
@@ -344,7 +346,7 @@ export default function RegistrationForm() {
                 <InputField
                   register={register}
                   errors={errors}
-                  label="Nombre completo"
+                  label="Nombre(s)"
                   name="name"
                   placeholder="Ej: Juan"
                 />
@@ -361,6 +363,7 @@ export default function RegistrationForm() {
                   label="Apellido Materno"
                   name="mother_last_name"
                   placeholder="Ej: García"
+                  required={false}
                 />
                 <InputField
                   register={register}
@@ -545,7 +548,7 @@ export default function RegistrationForm() {
                   type="url"
                   placeholder="www.tusitio.com"
                   required={false}
-                  />
+                />
               </div>
             </div>
 
