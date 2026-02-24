@@ -1,5 +1,23 @@
 import { z } from "zod";
 
+/**
+ * Límites máximos de caracteres por campo (para contador en el formulario).
+ * Debe coincidir con los .max() definidos en registrationSchema.
+ */
+export const FIELD_LENGTHS = {
+  name: { min: 1, max: 70 },
+  father_last_name: { min: 1, max: 50 },
+  nickname: { min: 3, max: 30 },
+  whatsapp: { min: 13, max: 15 },
+  city: { min: 2, max: 50 },
+  state: { min: 2, max: 50 },
+  country: { min: 2, max: 50 },
+  carrer: { min: 3, max: 100 },
+  dream: { min: 10, max: 500 },
+  motivation: { min: 10, max: 1000 },
+  message: { min: 10, max: 1000 },
+};
+
 // Expresiones regulares para validaciones
 const URL_REGEX =
   /^(https?:\/\/)[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/;
@@ -12,8 +30,11 @@ export const registrationSchema = z.object({
   // Nombre
   name: z
     .string()
-    .min(1, "El nombre debe tener al menos 1 caracteres")
-    .max(100, "El nombre no puede exceder 100 caracteres")
+    .min(FIELD_LENGTHS.name.min, "El nombre debe tener al menos 1 caracteres")
+    .max(
+      FIELD_LENGTHS.name.max,
+      `El nombre no puede exceder ${FIELD_LENGTHS.name.max} caracteres`,
+    )
     .regex(
       /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
       "El nombre solo puede contener letras y espacios",
@@ -23,28 +44,38 @@ export const registrationSchema = z.object({
   // Apellido Paterno
   father_last_name: z
     .string()
-    .min(1, "El apellido debe tener al menos 1 caracteres")
-    .max(100, "El apellido no puede exceder 100 caracteres")
+    .min(
+      FIELD_LENGTHS.father_last_name.min,
+      `El apellido debe tener al menos ${FIELD_LENGTHS.father_last_name.min} caracteres`,
+    )
+    .max(
+      FIELD_LENGTHS.father_last_name.max,
+      `El apellido no puede exceder ${FIELD_LENGTHS.father_last_name.max} caracteres`,
+    )
     .regex(
       /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
       "El apellido solo puede contener letras y espacios",
     )
     .optional()
     .transform((val) => val.trim()),
+
   // Apellido Materno
   mother_last_name: z
     .string()
-    /* .regex(
-      /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
-      "El apellido solo puede contener letras y espacios",
-    ) */
     .optional()
     .transform((val) => val.trim()),
+
   // Nickname
   nickname: z
     .string()
-    .min(1, "El nombre debe tener al menos 1 caracteres")
-    .max(100, "El nombre no puede exceder 100 caracteres")
+    .min(
+      FIELD_LENGTHS.nickname.min,
+      `El nombre debe tener al menos ${FIELD_LENGTHS.nickname.min} caracteres`,
+    )
+    .max(
+      FIELD_LENGTHS.nickname.max,
+      `El nombre no puede exceder ${FIELD_LENGTHS.nickname.max} caracteres`,
+    )
     .regex(
       /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
       "El nombre solo puede contener letras y espacios",
@@ -62,8 +93,14 @@ export const registrationSchema = z.object({
   // WhatsApp
   whatsapp: z
     .string()
-    .min(10, "El número de WhatsApp debe tener al menos 10 dígitos")
-    .max(15, "El número de WhatsApp no puede exceder 15 dígitos")
+    .min(
+      FIELD_LENGTHS.whatsapp.min,
+      `El número de WhatsApp debe tener al menos ${FIELD_LENGTHS.whatsapp.min} dígitos`,
+    )
+    .max(
+      FIELD_LENGTHS.whatsapp.max,
+      `El número de WhatsApp no puede exceder ${FIELD_LENGTHS.whatsapp.max} dígitos`,
+    )
     .regex(
       /^[\d\s\+\-\(\)]+$/,
       "Formato de WhatsApp inválido (solo números, +, -, (), espacios)",
@@ -98,32 +135,66 @@ export const registrationSchema = z.object({
   // Ciudad de residencia
   city: z
     .string()
-    .min(2, "La ciudad debe tener al menos 2 caracteres")
-    .max(100, "La ciudad no puede exceder 100 caracteres")
+    .min(
+      FIELD_LENGTHS.city.min,
+      `La ciudad debe tener al menos ${FIELD_LENGTHS.city.min} caracteres`,
+    )
+    .max(
+      FIELD_LENGTHS.city.max,
+      `La ciudad no puede exceder ${FIELD_LENGTHS.city.min} caracteres`,
+    )
     .transform((val) => val.trim()),
+
+  // STATE
   state: z
     .string()
-    .min(2, "El estado debe tener al menos 2 caracteres")
-    .max(100, "El estado no puede exceder 100 caracteres")
+    .min(
+      FIELD_LENGTHS.state.min,
+      `El estado debe tener al menos ${FIELD_LENGTHS.state.min} caracteres`,
+    )
+    .max(
+      FIELD_LENGTHS.state.max,
+      `El estado no puede exceder ${FIELD_LENGTHS.state.max} caracteres`,
+    )
     .transform((val) => val.trim()),
+
+  // COUNTRY
   country: z
     .string()
-    .min(2, "El país debe tener al menos 2 caracteres")
-    .max(100, "El país no puede exceder 100 caracteres")
+    .min(
+      FIELD_LENGTHS.country.min,
+      `El país debe tener al menos ${FIELD_LENGTHS.country.min} caracteres`,
+    )
+    .max(
+      FIELD_LENGTHS.country.max,
+      `El país no puede exceder ${FIELD_LENGTHS.country.max} caracteres`,
+    )
     .transform((val) => val.trim()),
 
   // Carrera/Profesión
   carrer: z
     .string()
-    .min(2, "La carrera debe tener al menos 2 caracteres")
-    .max(100, "La carrera no puede exceder 100 caracteres")
+    .min(
+      FIELD_LENGTHS.carrer.min,
+      `La carrera debe tener al menos ${FIELD_LENGTHS.carrer.min} caracteres`,
+    )
+    .max(
+      FIELD_LENGTHS.carrer.max,
+      `La carrera no puede exceder ${FIELD_LENGTHS.carrer.max} caracteres`,
+    )
     .transform((val) => val.trim()),
 
   // Sueño/Meta
   dream: z
     .string()
-    .min(10, "Tu sueño debe tener al menos 10 caracteres")
-    .max(500, "Tu sueño no puede exceder 500 caracteres")
+    .min(
+      FIELD_LENGTHS.dream.min,
+      `Tu sueño debe tener al menos ${FIELD_LENGTHS.dream.min} caracteres`,
+    )
+    .max(
+      FIELD_LENGTHS.dream.max,
+      `Tu sueño no puede exceder ${FIELD_LENGTHS.dream.max} caracteres`,
+    )
     .transform((val) => val.trim()),
 
   // Nombre del afiliado
@@ -135,8 +206,14 @@ export const registrationSchema = z.object({
   // Motivación
   motivation: z
     .string()
-    .min(10, "La motivación debe tener al menos 10 caracteres")
-    .max(1000, "La motivación no puede exceder 1000 caracteres")
+    .min(
+      FIELD_LENGTHS.motivation.min,
+      `La motivación debe tener al menos ${FIELD_LENGTHS.motivation.min} caracteres`,
+    )
+    .max(
+      FIELD_LENGTHS.motivation.max,
+      `La motivación no puede exceder ${FIELD_LENGTHS.motivation.max} caracteres`,
+    )
     .transform((val) => val.trim()),
 
   // Instagram (obligatorio)
@@ -182,8 +259,14 @@ export const registrationSchema = z.object({
   // Mensaje
   message: z
     .string()
-    .min(10, "El mensaje debe tener al menos 10 caracteres")
-    .max(1000, "El mensaje no puede exceder 1000 caracteres")
+    .min(
+      FIELD_LENGTHS.message.min,
+      `El mensaje debe tener al menos ${FIELD_LENGTHS.message.min} caracteres`,
+    )
+    .max(
+      FIELD_LENGTHS.message.max,
+      `El mensaje no puede exceder ${FIELD_LENGTHS.message.max} caracteres`,
+    )
     .transform((val) => val.trim()),
 
   // Archivo de imagen

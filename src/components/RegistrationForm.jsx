@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { registrationSchema } from "../schemas/userSchema.js";
+import { registrationSchema, FIELD_LENGTHS } from "../schemas/userSchema.js";
 import supabase from "../services/supabase";
 import { uploadProfilePicture } from "../utils/supabaseStorage.js";
 import {
@@ -29,45 +29,16 @@ const InputField = ({
   type = "text",
   placeholder,
   required = true,
+  watch,
+  maxLength,
   ...props
-}) => (
-  <div>
-    <label className="block text-sm font-semibold text-bossDark mb-2">
-      {label} {required && <span className="text-red-500">*</span>}
-    </label>
-    <input
-      {...register(name)}
-      type={type}
-      className={`w-full px-4 py-3 border-2 rounded-lg transition-all focus:outline-none focus:border-bossPinkLight ${
-        errors[name]
-          ? "border-red-300 bg-red-50"
-          : "border-gray-200 focus:border-bossPinkStrong"
-      }`}
-      placeholder={placeholder}
-      {...props}
-    />
-    <ErrorMessage error={errors[name]} />
-  </div>
-);
-
-const InputSocialNetwork = ({
-  register,
-  errors,
-  label,
-  name,
-  socialNetwork,
-  type = "text",
-  placeholder,
-  required = true,
-  ...props
-}) => (
-  <div>
-    <label className="block text-sm font-semibold text-bossDark mb-2 bg-bossGrayLight pl-4 py-2 rounded-lg">
-      {label} {required && <span className="text-red-500">*</span>}
-    </label>
-    <div className="flex items-center gap-2 w-full">
-      <label className="italic text-bossDark/70">
-        www.{socialNetwork}.com/@
+}) => {
+  const value = watch ? watch(name) : "";
+  const length = (value ?? "").length;
+  return (
+    <div>
+      <label className="block text-sm font-semibold text-bossDark mb-2">
+        {label} {required && <span className="text-red-500">*</span>}
       </label>
       <input
         {...register(name)}
@@ -78,12 +49,65 @@ const InputSocialNetwork = ({
             : "border-gray-200 focus:border-bossPinkStrong"
         }`}
         placeholder={placeholder}
+        maxLength={maxLength}
         {...props}
       />
+      {maxLength != null && (
+        <p className="mt-1 text-sm text-gray-500">
+          {length}/{maxLength} caracteres
+        </p>
+      )}
+      <ErrorMessage error={errors[name]} />
     </div>
-    <ErrorMessage error={errors[name]} />
-  </div>
-);
+  );
+};
+
+const InputSocialNetwork = ({
+  register,
+  errors,
+  label,
+  name,
+  socialNetwork,
+  type = "text",
+  placeholder,
+  required = true,
+  watch,
+  maxLength,
+  ...props
+}) => {
+  const value = watch ? watch(name) : "";
+  const length = (value ?? "").length;
+  return (
+    <div>
+      <label className="block text-sm font-semibold text-bossDark mb-2 bg-bossGrayLight pl-4 py-2 rounded-lg">
+        {label} {required && <span className="text-red-500">*</span>}
+      </label>
+      <div className="flex items-center gap-2 w-full">
+        <label className="italic text-bossDark/70">
+          www.{socialNetwork}.com/@
+        </label>
+        <input
+          {...register(name)}
+          type={type}
+          className={`w-full px-4 py-3 border-2 rounded-lg transition-all focus:outline-none focus:border-bossPinkLight ${
+            errors[name]
+              ? "border-red-300 bg-red-50"
+              : "border-gray-200 focus:border-bossPinkStrong"
+          }`}
+          placeholder={placeholder}
+          maxLength={maxLength}
+          {...props}
+        />
+      </div>
+      {maxLength != null && (
+        <p className="mt-1 text-sm text-gray-500">
+          {length}/{maxLength} caracteres
+        </p>
+      )}
+      <ErrorMessage error={errors[name]} />
+    </div>
+  );
+};
 
 const TextareaField = ({
   register,
@@ -93,24 +117,36 @@ const TextareaField = ({
   placeholder,
   rows = 4,
   required = true,
-}) => (
-  <div>
-    <label className="block text-sm font-semibold text-bossDark mb-2">
-      {label} {required && <span className="text-red-500">*</span>}
-    </label>
-    <textarea
-      {...register(name)}
-      rows={rows}
-      className={`w-full px-4 py-3 border-2 rounded-lg transition-all focus:outline-none focus:border-bossPinkStrong resize-none ${
-        errors[name]
-          ? "border-red-300 bg-red-50"
-          : "border-gray-200 focus:border-bossPinkStrong"
-      }`}
-      placeholder={placeholder}
-    />
-    <ErrorMessage error={errors[name]} />
-  </div>
-);
+  watch,
+  maxLength,
+}) => {
+  const value = watch ? watch(name) : "";
+  const length = (value ?? "").length;
+  return (
+    <div>
+      <label className="block text-sm font-semibold text-bossDark mb-2">
+        {label} {required && <span className="text-red-500">*</span>}
+      </label>
+      <textarea
+        {...register(name)}
+        rows={rows}
+        className={`w-full px-4 py-3 border-2 rounded-lg transition-all focus:outline-none focus:border-bossPinkStrong resize-none ${
+          errors[name]
+            ? "border-red-300 bg-red-50"
+            : "border-gray-200 focus:border-bossPinkStrong"
+        }`}
+        placeholder={placeholder}
+        maxLength={maxLength}
+      />
+      {maxLength != null && (
+        <p className="mt-1 text-sm text-gray-500">
+          {length}/{maxLength} caracteres
+        </p>
+      )}
+      <ErrorMessage error={errors[name]} />
+    </div>
+  );
+};
 
 export default function RegistrationForm() {
   const navigate = useNavigate();
@@ -349,6 +385,8 @@ export default function RegistrationForm() {
                   label="Nombre(s)"
                   name="name"
                   placeholder="Ej: Juan"
+                  watch={watch}
+                  maxLength={FIELD_LENGTHS.name.max}
                 />
                 <InputField
                   register={register}
@@ -356,6 +394,8 @@ export default function RegistrationForm() {
                   label="Apellido Paterno"
                   name="father_last_name"
                   placeholder="Ej: Pérez"
+                  watch={watch}
+                  maxLength={FIELD_LENGTHS.father_last_name.max}
                 />
                 <InputField
                   register={register}
@@ -364,6 +404,7 @@ export default function RegistrationForm() {
                   name="mother_last_name"
                   placeholder="Ej: García"
                   required={false}
+                  watch={watch}
                 />
                 <InputField
                   register={register}
@@ -371,6 +412,8 @@ export default function RegistrationForm() {
                   label="¿Como te gustaría que te llamáramos?"
                   name="nickname"
                   placeholder="Ej: Juancito"
+                  watch={watch}
+                  maxLength={FIELD_LENGTHS.nickname.max}
                 />
                 <InputField
                   register={register}
@@ -379,6 +422,7 @@ export default function RegistrationForm() {
                   name="email"
                   type="email"
                   placeholder="ejemplo@correo.com"
+                  watch={watch}
                 />
                 <InputField
                   register={register}
@@ -387,6 +431,8 @@ export default function RegistrationForm() {
                   name="whatsapp"
                   type="tel"
                   placeholder="+52 33 1234 5678"
+                  watch={watch}
+                  maxLength={FIELD_LENGTHS.whatsapp.max}
                 />
                 <div>
                   <InputField
@@ -408,6 +454,8 @@ export default function RegistrationForm() {
                   label="Ciudad"
                   name="city"
                   placeholder="Ej: Leon"
+                  watch={watch}
+                  maxLength={FIELD_LENGTHS.city.max}
                 />
                 <InputField
                   register={register}
@@ -415,6 +463,8 @@ export default function RegistrationForm() {
                   label="Estado"
                   name="state"
                   placeholder="Ej: Guanajuato"
+                  watch={watch}
+                  maxLength={FIELD_LENGTHS.state.max}
                 />
                 <InputField
                   register={register}
@@ -422,6 +472,8 @@ export default function RegistrationForm() {
                   label="País"
                   name="country"
                   placeholder="Ej: México"
+                  watch={watch}
+                  maxLength={FIELD_LENGTHS.country.max}
                 />
                 <InputField
                   register={register}
@@ -429,6 +481,8 @@ export default function RegistrationForm() {
                   label="¿A qué te dedicas actualmente?"
                   name="carrer"
                   placeholder="Puedes incluir tu profesión, emprendimiento o rol actual"
+                  watch={watch}
+                  maxLength={FIELD_LENGTHS.carrer.max}
                 />
               </div>
             </div>
@@ -519,6 +573,7 @@ export default function RegistrationForm() {
                   type="url"
                   placeholder="tu usuario"
                   socialNetwork="instagram"
+                  watch={watch}
                 />
                 <InputSocialNetwork
                   register={register}
@@ -529,6 +584,7 @@ export default function RegistrationForm() {
                   placeholder="tu usuario"
                   required={false}
                   socialNetwork="tiktok"
+                  watch={watch}
                 />
                 <InputSocialNetwork
                   register={register}
@@ -539,6 +595,7 @@ export default function RegistrationForm() {
                   placeholder="tu canal"
                   required={false}
                   socialNetwork="youtube"
+                  watch={watch}
                 />
                 <InputField
                   register={register}
@@ -548,6 +605,7 @@ export default function RegistrationForm() {
                   type="url"
                   placeholder="www.tusitio.com"
                   required={false}
+                  watch={watch}
                 />
               </div>
             </div>
@@ -565,6 +623,8 @@ export default function RegistrationForm() {
                   name="dream"
                   placeholder="Un espacio para que compartas lo que te mueve..."
                   rows={3}
+                  watch={watch}
+                  maxLength={FIELD_LENGTHS.dream.max}
                 />
                 <TextareaField
                   register={register}
@@ -573,6 +633,8 @@ export default function RegistrationForm() {
                   name="motivation"
                   placeholder="Breve reflexión que conecte contigo y con otras..."
                   rows={4}
+                  watch={watch}
+                  maxLength={FIELD_LENGTHS.motivation.max}
                 />
                 <InputField
                   register={register}
@@ -589,6 +651,8 @@ export default function RegistrationForm() {
                   name="message"
                   placeholder="Tu voz puede inspirar a muchas 💜..."
                   rows={4}
+                  watch={watch}
+                  maxLength={FIELD_LENGTHS.message.max}
                 />
               </div>
             </div>
