@@ -2,7 +2,7 @@ import { z } from "zod";
 
 // Expresiones regulares para validaciones
 const URL_REGEX =
-  /^[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/;
+  /^(https?:\/\/)[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/;
 const INSTAGRAM_REGEX = /^[a-zA-Z0-9._]+\/?$/;
 const TIKTOK_REGEX = /^[a-zA-Z0-9._]+$/;
 const YOUTUBE_REGEX = /^[a-zA-Z0-9]([a-zA-Z0-9._\u00B7-]*[a-zA-Z0-9])?$/;
