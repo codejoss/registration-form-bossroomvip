@@ -12,7 +12,7 @@ export const FIELD_LENGTHS = {
   address_city: { min: 2, max: 50 },
   address_state: { min: 2, max: 50 },
   address_country: { min: 2, max: 50 },
-  career: { min: 3, max: 100 },
+  career: { min: 3, max: 30 },
   dream: { min: 10, max: 500 },
   motivation: { min: 10, max: 1000 },
   member_message: { min: 10, max: 1000 },
