@@ -5,17 +5,17 @@ import { z } from "zod";
  * Debe coincidir con los .max() definidos en registrationSchema.
  */
 export const FIELD_LENGTHS = {
-  name: { min: 1, max: 70 },
+  member_name: { min: 1, max: 70 },
   father_last_name: { min: 1, max: 50 },
   nickname: { min: 3, max: 30 },
   whatsapp: { min: 13, max: 15 },
-  city: { min: 2, max: 50 },
-  state: { min: 2, max: 50 },
-  country: { min: 2, max: 50 },
-  carrer: { min: 3, max: 100 },
+  address_city: { min: 2, max: 50 },
+  address_state: { min: 2, max: 50 },
+  address_country: { min: 2, max: 50 },
+  career: { min: 3, max: 100 },
   dream: { min: 10, max: 500 },
   motivation: { min: 10, max: 1000 },
-  message: { min: 10, max: 1000 },
+  member_message: { min: 10, max: 1000 },
 };
 
 // Expresiones regulares para validaciones
@@ -28,12 +28,12 @@ const WHATSAPP_REGEX = /^\+?[1-9]\d{1,14}$/; // Formato internacional E.164
 
 export const registrationSchema = z.object({
   // Nombre
-  name: z
+  member_name: z
     .string()
-    .min(FIELD_LENGTHS.name.min, "El nombre debe tener al menos 1 caracteres")
+    .min(FIELD_LENGTHS.member_name.min, `El nombre debe tener al menos ${FIELD_LENGTHS.member_name.min} caracteres`)
     .max(
-      FIELD_LENGTHS.name.max,
-      `El nombre no puede exceder ${FIELD_LENGTHS.name.max} caracteres`,
+      FIELD_LENGTHS.member_name.max,
+      `El nombre no puede exceder ${FIELD_LENGTHS.member_name.max} caracteres`,
     )
     .regex(
       /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/,
@@ -133,54 +133,54 @@ export const registrationSchema = z.object({
     }, "La fecha de nacimiento no puede ser futura"),
 
   // Ciudad de residencia
-  city: z
+  address_city: z
     .string()
     .min(
-      FIELD_LENGTHS.city.min,
-      `La ciudad debe tener al menos ${FIELD_LENGTHS.city.min} caracteres`,
+      FIELD_LENGTHS.address_city.min,
+      `La ciudad debe tener al menos ${FIELD_LENGTHS.address_city.min} caracteres`,
     )
     .max(
-      FIELD_LENGTHS.city.max,
-      `La ciudad no puede exceder ${FIELD_LENGTHS.city.min} caracteres`,
+      FIELD_LENGTHS.address_city.max,
+      `La ciudad no puede exceder ${FIELD_LENGTHS.address_city.min} caracteres`,
     )
     .transform((val) => val.trim()),
 
   // STATE
-  state: z
+  address_state: z
     .string()
     .min(
-      FIELD_LENGTHS.state.min,
-      `El estado debe tener al menos ${FIELD_LENGTHS.state.min} caracteres`,
+      FIELD_LENGTHS.address_state.min,
+      `El estado debe tener al menos ${FIELD_LENGTHS.address_state.min} caracteres`,
     )
     .max(
-      FIELD_LENGTHS.state.max,
-      `El estado no puede exceder ${FIELD_LENGTHS.state.max} caracteres`,
+      FIELD_LENGTHS.address_state.max,
+      `El estado no puede exceder ${FIELD_LENGTHS.address_state.max} caracteres`,
     )
     .transform((val) => val.trim()),
 
   // COUNTRY
-  country: z
+  address_country: z
     .string()
     .min(
-      FIELD_LENGTHS.country.min,
-      `El país debe tener al menos ${FIELD_LENGTHS.country.min} caracteres`,
+      FIELD_LENGTHS.address_country.min,
+      `El país debe tener al menos ${FIELD_LENGTHS.address_country.min} caracteres`,
     )
     .max(
-      FIELD_LENGTHS.country.max,
-      `El país no puede exceder ${FIELD_LENGTHS.country.max} caracteres`,
+      FIELD_LENGTHS.address_country.max,
+      `El país no puede exceder ${FIELD_LENGTHS.address_country.max} caracteres`,
     )
     .transform((val) => val.trim()),
 
   // Carrera/Profesión
-  carrer: z
+  career: z
     .string()
     .min(
-      FIELD_LENGTHS.carrer.min,
-      `La carrera debe tener al menos ${FIELD_LENGTHS.carrer.min} caracteres`,
+      FIELD_LENGTHS.career.min,
+      `La carrera debe tener al menos ${FIELD_LENGTHS.career.min} caracteres`,
     )
     .max(
-      FIELD_LENGTHS.carrer.max,
-      `La carrera no puede exceder ${FIELD_LENGTHS.carrer.max} caracteres`,
+      FIELD_LENGTHS.career.max,
+      `La carrera no puede exceder ${FIELD_LENGTHS.career.max} caracteres`,
     )
     .transform((val) => val.trim()),
 
@@ -257,15 +257,15 @@ export const registrationSchema = z.object({
     .transform((val) => (val ? val.trim() : "")),
 
   // Mensaje
-  message: z
+  member_message: z
     .string()
     .min(
-      FIELD_LENGTHS.message.min,
-      `El mensaje debe tener al menos ${FIELD_LENGTHS.message.min} caracteres`,
+      FIELD_LENGTHS.member_message.min,
+      `El mensaje debe tener al menos ${FIELD_LENGTHS.member_message.min} caracteres`,
     )
     .max(
-      FIELD_LENGTHS.message.max,
-      `El mensaje no puede exceder ${FIELD_LENGTHS.message.max} caracteres`,
+      FIELD_LENGTHS.member_message.max,
+      `El mensaje no puede exceder ${FIELD_LENGTHS.member_message.max} caracteres`,
     )
     .transform((val) => val.trim()),
 

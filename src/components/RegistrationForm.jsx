@@ -166,17 +166,17 @@ export default function RegistrationForm() {
     resolver: zodResolver(registrationSchema),
     mode: "onBlur",
     defaultValues: {
-      name: "",
+      member_name: "",
       father_last_name: "",
       mother_last_name: "",
       nickname: "",
       email: "",
       whatsapp: "+52",
       birthday: "",
-      city: "",
-      state: "",
-      country: "México",
-      carrer: "",
+      address_city: "",
+      address_state: "",
+      address_country: "",
+      career: "",
       dream: "",
       affiliate_name: "",
       motivation: "",
@@ -184,7 +184,7 @@ export default function RegistrationForm() {
       tiktok_url: "",
       youtube_url: "",
       website_url: "",
-      message: "",
+      member_message: "",
       picture_file: undefined,
       picture_url: "",
     },
@@ -248,17 +248,17 @@ export default function RegistrationForm() {
     const { data, error } = await supabase.rpc(
       "insert_member_with_private_data",
       {
-        p_name: userData.name,
+        p_member_name: userData.member_name,
         p_father_last_name: userData.father_last_name,
         p_mother_last_name: userData.mother_last_name || "",
         p_nickname: userData.nickname,
         p_email: userData.email,
         p_whatsapp: userData.whatsapp,
         p_birthday: userData.birthday,
-        p_city: userData.city,
-        p_state: userData.state,
-        p_country: userData.country,
-        p_carrer: userData.carrer,
+        p_address_city: userData.address_city,
+        p_address_state: userData.address_state,
+        p_address_country: userData.address_country,
+        p_career: userData.career,
         p_dream: userData.dream,
         p_affiliate_name: userData.affiliate_name || "",
         p_motivation: userData.motivation,
@@ -266,7 +266,7 @@ export default function RegistrationForm() {
         p_tiktok_url: userData.tiktok_url || "",
         p_youtube_url: userData.youtube_url || "",
         p_website_url: userData.website_url || "",
-        p_message: userData.message,
+        p_member_message: userData.member_message,
         p_picture_url: userData.picture_url,
       },
     );
@@ -383,10 +383,11 @@ export default function RegistrationForm() {
                   register={register}
                   errors={errors}
                   label="Nombre(s)"
-                  name="name"
+                  name="member_name"
                   placeholder="Ej: Juan"
                   watch={watch}
-                  maxLength={FIELD_LENGTHS.name.max}
+                  minLength={FIELD_LENGTHS.member_name.min}
+                  maxLength={FIELD_LENGTHS.member_name.max}
                 />
                 <InputField
                   register={register}
@@ -430,7 +431,7 @@ export default function RegistrationForm() {
                   label="WhatsApp"
                   name="whatsapp"
                   type="tel"
-                  placeholder="+52 33 1234 5678"
+                  placeholder="+52 111 222 3333"
                   watch={watch}
                   maxLength={FIELD_LENGTHS.whatsapp.max}
                 />
@@ -452,37 +453,37 @@ export default function RegistrationForm() {
                   register={register}
                   errors={errors}
                   label="Ciudad"
-                  name="city"
-                  placeholder="Ej: Leon"
+                  name="address_city"
+                  placeholder="Ej: León"
                   watch={watch}
-                  maxLength={FIELD_LENGTHS.city.max}
+                  maxLength={FIELD_LENGTHS.address_city.max}
                 />
                 <InputField
                   register={register}
                   errors={errors}
                   label="Estado"
-                  name="state"
+                  name="address_state"
                   placeholder="Ej: Guanajuato"
                   watch={watch}
-                  maxLength={FIELD_LENGTHS.state.max}
+                  maxLength={FIELD_LENGTHS.address_state.max}
                 />
                 <InputField
                   register={register}
                   errors={errors}
                   label="País"
-                  name="country"
+                  name="address_country"
                   placeholder="Ej: México"
                   watch={watch}
-                  maxLength={FIELD_LENGTHS.country.max}
+                  maxLength={FIELD_LENGTHS.address_country.max}
                 />
                 <InputField
                   register={register}
                   errors={errors}
                   label="¿A qué te dedicas actualmente?"
-                  name="carrer"
+                  name="career"
                   placeholder="Puedes incluir tu profesión, emprendimiento o rol actual"
                   watch={watch}
-                  maxLength={FIELD_LENGTHS.carrer.max}
+                  maxLength={FIELD_LENGTHS.career.max}
                 />
               </div>
             </div>
@@ -603,7 +604,7 @@ export default function RegistrationForm() {
                   label="Sitio Web"
                   name="website_url"
                   type="url"
-                  placeholder="www.tusitio.com"
+                  placeholder="https://www.tusitio.com"
                   required={false}
                   watch={watch}
                 />
@@ -648,11 +649,11 @@ export default function RegistrationForm() {
                   register={register}
                   errors={errors}
                   label="Deja un mensaje o consejo para otra Boss que este comenzando"
-                  name="message"
+                  name="member_message"
                   placeholder="Tu voz puede inspirar a muchas 💜..."
                   rows={4}
                   watch={watch}
-                  maxLength={FIELD_LENGTHS.message.max}
+                  maxLength={FIELD_LENGTHS.member_message.max}
                 />
               </div>
             </div>
@@ -664,14 +665,14 @@ export default function RegistrationForm() {
                   Progreso del formulario (14 obligatorios)
                 </span>
                 <span className="text-sm font-semibold text-bossPinkStrong">
-                  {Object.keys(dirtyFields).length} / 18 campos completados
+                  {Object.keys(dirtyFields).length} / 19 campos completados
                 </span>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">
                 <div
                   className="bg-linear-to-r from-bossPinkStrong to-bossPink h-2 rounded-full transition-all duration-300"
                   style={{
-                    width: `${(Object.keys(dirtyFields).length / 18) * 100}%`,
+                    width: `${(Object.keys(dirtyFields).length / 19) * 100}%`,
                   }}
                 />
               </div>
