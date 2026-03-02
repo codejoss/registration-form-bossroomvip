@@ -245,33 +245,47 @@ export default function RegistrationForm() {
   };
 
   const insertUser = async (userData) => {
-    const { data, error } = await supabase.rpc(
-      "insert_member_with_private_data",
+    const response = await fetch(
+      `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/register-member`,
       {
-        p_member_name: userData.member_name,
-        p_father_last_name: userData.father_last_name,
-        p_mother_last_name: userData.mother_last_name || "",
-        p_nickname: userData.nickname,
-        p_email: userData.email,
-        p_whatsapp: userData.whatsapp,
-        p_birthday: userData.birthday,
-        p_address_city: userData.address_city,
-        p_address_state: userData.address_state,
-        p_address_country: userData.address_country,
-        p_career: userData.career,
-        p_dream: userData.dream,
-        p_affiliate_name: userData.affiliate_name || "",
-        p_motivation: userData.motivation,
-        p_instagram_url: userData.instagram_url,
-        p_tiktok_url: userData.tiktok_url || "",
-        p_youtube_url: userData.youtube_url || "",
-        p_website_url: userData.website_url || "",
-        p_member_message: userData.member_message,
-        p_picture_url: userData.picture_url,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          apikey: import.meta.env.VITE_SUPABASE_ANON_KEY,
+        },
+        body: JSON.stringify({
+          member_name: userData.member_name,
+          father_last_name: userData.father_last_name,
+          mother_last_name: userData.mother_last_name || "",
+          nickname: userData.nickname,
+          email: userData.email,
+          whatsapp: userData.whatsapp,
+          birthday: userData.birthday,
+          address_city: userData.address_city,
+          address_state: userData.address_state,
+          address_country: userData.address_country,
+          career: userData.career,
+          dream: userData.dream,
+          affiliate_name: userData.affiliate_name || "",
+          motivation: userData.motivation,
+          instagram_url: userData.instagram_url,
+          tiktok_url: userData.tiktok_url || "",
+          youtube_url: userData.youtube_url || "",
+          website_url: userData.website_url || "",
+          member_message: userData.member_message,
+          picture_url: userData.picture_url,
+        }),
       },
     );
 
-    return { data, error };
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.error ?? "Error desconocido");
+    }
+
+    return { data: result.data, error: null };
   };
 
   const onSubmit = async (data) => {
